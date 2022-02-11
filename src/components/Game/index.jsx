@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Board from "../Board";
 import KeyBoard from "../KeyBoard";
 import NavBar from "../NavBar";
 import styles from "./style.module.css";
 
 function Game() {
-  const [letter, setletter] = useState("");
-  const keyHandler = (letterValue) => {setletter(letterValue)}
+  const [letter, setletter] = useState();
+  const [changed, setChanged] = useState(false);
+  const [letters, setLetters] = useState({});
+  useEffect(()=>{console.log(letters)}, [changed]);
+  const [clicked, setClicked] = useState(0);
+  const keyHandler = (letterValue) => {setletter(letterValue); setClicked(clicked + 1)}
+  const LettersHandler = (lettersValue) => {setLetters(lettersValue); setChanged(!changed)}
   return (
     <div className={styles.game}>
       <NavBar />
       <hr />
-      <Board letter={letter}/>
-      <KeyBoard keyHandler={keyHandler}/>
+      <Board letter={letter} clicks={clicked} letters={LettersHandler} />
+      <KeyBoard keyHandler={keyHandler} letters={letters} changed={changed} />
     </div>
   );
 }

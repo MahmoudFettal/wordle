@@ -1,9 +1,23 @@
+import { useEffect, useState } from "react";
+import BackspaceIcon from "@mui/icons-material/Backspace";
+
 function Box(props) {
-  const x = props.value === "" ? "border-2 border-gray-300": "bg-amber-400"
+  const [state, setState] = useState("text-black border-2 border-gray-300");
+
+  useEffect(() => {
+    if (props.state === "C") setState("bg-emerald-500 text-white");
+    if (props.state === "E") setState("bg-amber-500 text-white");
+    if (props.state === "N") setState("bg-zinc-500 text-white");
+  }, [props.state]);
 
   return (
-    <div className={"w-14 h-14  "+ x +" text-white grid place-items-center p-0 m-0 font-bold text-2xl"}>
-      {props.value}
+    <div
+      className={
+        "w-14 h-14 grid place-items-center p-0 m-0 font-bold text-2xl " +
+        state
+      }
+    >
+      {props.value === "DEL"?<BackspaceIcon />:props.value}
     </div>
   );
 }
