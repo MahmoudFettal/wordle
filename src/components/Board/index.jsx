@@ -4,6 +4,7 @@ import Alert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
 import CloseIcon from "@mui/icons-material/Close";
+import words from "../../words";
 
 const correct = "SMART";
 let defaulBoard = [];
@@ -50,24 +51,31 @@ function Board(props) {
           } else {
             if (props.letter === "ENTER") {
               let correctLetters = 0;
+              let word = "";
               for (let i = 0; i < 5; i++) {
-                if (correct[i] === prevBoard[row][i][0]) {
-                  prevBoard[row][i][1] = "C";
-                  correctLetters++;
-                } else if (correct.includes(prevBoard[row][i][0]))
-                  prevBoard[row][i][1] = "E";
-                else prevBoard[row][i][1] = "N";
-                setRow(row + 1);
-                setCol(0);
-                setLetters((prev) => {
-                  prev[board[row][i][0]] = board[row][i][1];
-                  return prev;
-                });
+                word += prevBoard[row][i][0];
               }
-              setChanged(!changed);
+              if (words.includes(word.toLowerCase())) {
+                console.log("I am here you are right");
+                for (let i = 0; i < 5; i++) {
+                  if (correct[i] === prevBoard[row][i][0]) {
+                    prevBoard[row][i][1] = "C";
+                    correctLetters++;
+                  } else if (correct.includes(prevBoard[row][i][0]))
+                    prevBoard[row][i][1] = "E";
+                  else prevBoard[row][i][1] = "N";
+                  setRow(row + 1);
+                  setCol(0);
+                  setLetters((prev) => {
+                    prev[board[row][i][0]] = board[row][i][1];
+                    return prev;
+                  });
+                }
+                setChanged(!changed);
 
-              if (correctLetters === 5) setWin(true);
-              return prevBoard;
+                if (correctLetters === 5) setWin(true);
+                return prevBoard;
+              }
             }
           }
           return prevBoard;
