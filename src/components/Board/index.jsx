@@ -28,10 +28,8 @@ function Board(props) {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if (win) {
-      setMessage("You WIN it is ");
-    } else if (lost) {
-      setMessage("You LOST it was ");
+    if (win || lost) {
+      console.log("Game ended!");
     } else {
       if (props.clicks !== 0) {
         if (props.letter === "DEL") {
@@ -68,7 +66,10 @@ function Board(props) {
                       prevBoard[row][i][1] = "E";
                     else prevBoard[row][i][1] = "N";
                     setRow(row + 1);
-                    if (row === 5) setLost(true);
+                    if (row === 5) {
+                      setLost(true);
+                      setMessage("You LOST it was ");
+                    }
 
                     setCol(0);
                     setLetters((prev) => {
@@ -78,7 +79,10 @@ function Board(props) {
                   }
                   setChanged(!changed);
 
-                  if (correctLetters === 5) setWin(true);
+                  if (correctLetters === 5) {
+                    setWin(true);
+                    setMessage("You WIN it is ");
+                  }
                   return prevBoard;
                 } else {
                   props.error("Word not in dictionary");
