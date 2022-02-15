@@ -27,7 +27,7 @@ function Board(props) {
   const [lost, setLost] = useState(false);
 
   useEffect(() => {
-    if (props.clicks !== 0 || win || lost) {
+    if (props.clicks !== 0 || !win || !lost) {
       if (props.letter === "DEL") {
         setCol(col === 0 ? 0 : col - 1);
         setBoard((prevBoard) => {
