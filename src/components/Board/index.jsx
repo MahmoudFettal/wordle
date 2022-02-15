@@ -25,65 +25,72 @@ function Board(props) {
   const [col, setCol] = useState(0);
   const [win, setWin] = useState(false);
   const [lost, setLost] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    if (props.clicks !== 0 || !win || !lost) {
-      if (props.letter === "DEL") {
-        setCol(col === 0 ? 0 : col - 1);
-        setBoard((prevBoard) => {
-          prevBoard[row][col === 0 ? 0 : col - 1][0] = "";
-          return prevBoard;
-        });
-      } else {
-        setBoard((prevBoard) => {
-          if (col < 5) {
-            if (props.letter !== "ENTER") {
-              prevBoard[row][col][0] = props.letter;
-              setCol(col + 1);
-            } else {
-              props.error("Words are 5 letters long!");
-              setTimeout(() => {
-                props.error("");
-              }, 1000);
-            }
-          } else {
-            if (props.letter === "ENTER") {
-              let correctLetters = 0;
-              let word = "";
-              for (let i = 0; i < 5; i++) {
-                word += prevBoard[row][i][0];
-              }
-              if (words.includes(word.toLowerCase())) {
-                for (let i = 0; i < 5; i++) {
-                  if (correct[i] === prevBoard[row][i][0]) {
-                    prevBoard[row][i][1] = "C";
-                    correctLetters++;
-                  } else if (correct.includes(prevBoard[row][i][0]))
-                    prevBoard[row][i][1] = "E";
-                  else prevBoard[row][i][1] = "N";
-                  setRow(row + 1);
-                  if (row === 5) setLost(true);
-
-                  setCol(0);
-                  setLetters((prev) => {
-                    prev[board[row][i][0]] = board[row][i][1];
-                    return prev;
-                  });
-                }
-                setChanged(!changed);
-
-                if (correctLetters === 5) setWin(true);
-                return prevBoard;
+    if (win) {
+      setMessage("You WIN it is ");
+    } else if (lost) {
+      setMessage("You LOST it was ");
+    } else {
+      if (props.clicks !== 0) {
+        if (props.letter === "DEL") {
+          setCol(col === 0 ? 0 : col - 1);
+          setBoard((prevBoard) => {
+            prevBoard[row][col === 0 ? 0 : col - 1][0] = "";
+            return prevBoard;
+          });
+        } else {
+          setBoard((prevBoard) => {
+            if (col < 5) {
+              if (props.letter !== "ENTER") {
+                prevBoard[row][col][0] = props.letter;
+                setCol(col + 1);
               } else {
-                props.error("Word not in dictionary");
+                props.error("Words are 5 letters long!");
                 setTimeout(() => {
                   props.error("");
                 }, 1000);
               }
+            } else {
+              if (props.letter === "ENTER") {
+                let correctLetters = 0;
+                let word = "";
+                for (let i = 0; i < 5; i++) {
+                  word += prevBoard[row][i][0];
+                }
+                if (words.includes(word.toLowerCase())) {
+                  for (let i = 0; i < 5; i++) {
+                    if (correct[i] === prevBoard[row][i][0]) {
+                      prevBoard[row][i][1] = "C";
+                      correctLetters++;
+                    } else if (correct.includes(prevBoard[row][i][0]))
+                      prevBoard[row][i][1] = "E";
+                    else prevBoard[row][i][1] = "N";
+                    setRow(row + 1);
+                    if (row === 5) setLost(true);
+
+                    setCol(0);
+                    setLetters((prev) => {
+                      prev[board[row][i][0]] = board[row][i][1];
+                      return prev;
+                    });
+                  }
+                  setChanged(!changed);
+
+                  if (correctLetters === 5) setWin(true);
+                  return prevBoard;
+                } else {
+                  props.error("Word not in dictionary");
+                  setTimeout(() => {
+                    props.error("");
+                  }, 1000);
+                }
+              }
             }
-          }
-          return prevBoard;
-        });
+            return prevBoard;
+          });
+        }
       }
     }
   }, [props.clicks]);
@@ -104,11 +111,7 @@ function Board(props) {
         );
       })}
       <div className=" grid place-items-center h-8 font-bold">
-        {lost
-          ? `You lost it was ${correct}`
-          : win
-          ? `You are right it is ${correct}`
-          : ""}
+        {lost ? `${message} ${correct}` : win ? `${message}  ${correct}` : ""}
       </div>
     </div>
   );
