@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
 import Box from "../Box";
-import Alert from "@mui/material/Alert";
-import IconButton from "@mui/material/IconButton";
-import Collapse from "@mui/material/Collapse";
-import CloseIcon from "@mui/icons-material/Close";
 import words from "../../words";
 
 const correct = "SMART";
@@ -27,15 +23,12 @@ function Board(props) {
   const [changed, setChanged] = useState(false);
   const [row, setRow] = useState(0);
   const [col, setCol] = useState(0);
-  const [open, setOpen] = useState(false);
   const [win, setWin] = useState(false);
+  const [lost, setLost] = useState(false);
 
   useEffect(() => {
-    console.log(row, col);
-    if (props.clicks !== 0) {
-      if (win) {
-        console.log("you win!");
-      } else if (props.letter === "DEL") {
+    if (props.clicks !== 0 || win || lost) {
+      if (props.letter === "DEL") {
         setCol(col === 0 ? 0 : col - 1);
         setBoard((prevBoard) => {
           prevBoard[row][col === 0 ? 0 : col - 1][0] = "";
@@ -47,6 +40,11 @@ function Board(props) {
             if (props.letter !== "ENTER") {
               prevBoard[row][col][0] = props.letter;
               setCol(col + 1);
+            } else {
+              props.error("Words are 5 letters long!");
+              setTimeout(() => {
+                props.error("");
+              }, 1000);
             }
           } else {
             if (props.letter === "ENTER") {
@@ -56,7 +54,6 @@ function Board(props) {
                 word += prevBoard[row][i][0];
               }
               if (words.includes(word.toLowerCase())) {
-                console.log("I am here you are right");
                 for (let i = 0; i < 5; i++) {
                   if (correct[i] === prevBoard[row][i][0]) {
                     prevBoard[row][i][1] = "C";
@@ -65,6 +62,8 @@ function Board(props) {
                     prevBoard[row][i][1] = "E";
                   else prevBoard[row][i][1] = "N";
                   setRow(row + 1);
+                  if (row === 5) setLost(true);
+
                   setCol(0);
                   setLetters((prev) => {
                     prev[board[row][i][0]] = board[row][i][1];
@@ -75,6 +74,11 @@ function Board(props) {
 
                 if (correctLetters === 5) setWin(true);
                 return prevBoard;
+              } else {
+                props.error("Word not in dictionary");
+                setTimeout(() => {
+                  props.error("");
+                }, 1000);
               }
             }
           }
@@ -89,35 +93,23 @@ function Board(props) {
   }, [changed]);
 
   return (
-    <div className="p-10 grid gap-y-1 items-center w-100 justify-center">
-      <Collapse in={open}>
-        <Alert
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-          sx={{ mb: 2 }}
-        >
-          Close me!
-        </Alert>
-      </Collapse>
+    <div className="px-10 py-5 grid gap-y-1 items-center w-100 justify-center">
       {board.map((row, key) => {
         return (
           <div key={key} className="flex gap-1 w-fit">
             {row.map((value, key) => (
-              <Box key={key} value={value[0]} state={value[1]} />
+              <Box key={key} value={value[0]} state={value[1]} pos={key} />
             ))}
           </div>
         );
       })}
+      <div className=" grid place-items-center h-8 font-bold">
+        {lost
+          ? `You lost it was ${correct}`
+          : win
+          ? `You are right it is ${correct}`
+          : ""}
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Board from "../Board";
+import Error from "../Error";
 import Help from "../Help";
 import KeyBoard from "../KeyBoard";
 import Modal from "../Modal";
@@ -11,11 +12,9 @@ function Game() {
   const [changed, setChanged] = useState(false);
   const [letters, setLetters] = useState({});
   const [help, setHelp] = useState(false);
-
-  useEffect(() => {
-    console.log(letters);
-  }, [changed]);
   const [clicked, setClicked] = useState(0);
+  const [error, setError] = useState("");
+
   const keyHandler = (letterValue) => {
     setletter(letterValue);
     setClicked(clicked + 1);
@@ -27,10 +26,11 @@ function Game() {
   return (
     <>
       {help && <Modal title="How to play!" help={setHelp}> <Help /> </Modal>}
+      {error && <Error>{error}</Error>}
       <div className={styles.game}>
         <NavBar help={setHelp} />
         <hr />
-        <Board letter={letter} clicks={clicked} letters={LettersHandler} />
+        <Board letter={letter} clicks={clicked} letters={LettersHandler} error={setError}/>
         <KeyBoard keyHandler={keyHandler} letters={letters} changed={changed} />
       </div>
     </>

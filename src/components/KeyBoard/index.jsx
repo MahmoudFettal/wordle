@@ -22,13 +22,15 @@ function Key(props) {
   };
 
   useEffect(() => {
-    if (props.state === "C") setState("bg-emerald-500 text-white");
-    if (props.state === "E") setState("bg-amber-500 text-white");
-    if (props.state === "N") setState("bg-zinc-500 text-white");
+    setTimeout(() => {
+      if (props.state === "C") setState("bg-emerald-500 text-white");
+      if (props.state === "E") setState("bg-amber-500 text-white");
+      if (props.state === "N") setState("bg-zinc-500 text-white");
+    }, 350);
   }, [props.state]);
 
   return (
-    <div
+    <button
       className={
         x +
         state +
@@ -37,7 +39,7 @@ function Key(props) {
       onClick={returnKey}
     >
       {props.value === "DEL" ? <BackspaceIcon /> : props.value}
-    </div>
+    </button>
   );
 }
 
@@ -45,7 +47,6 @@ function KeyBoard(props) {
   const [letters, setletters] = useState(defaultLetters);
   useEffect(() => {
     setletters(props.letters);
-    console.log("yep");
   }, [props.changed]);
 
   const keyHandler = (value) => {
