@@ -14,7 +14,7 @@ let defaultLetters = [];
 });
 
 function Key(props) {
-  const [state, setState] = useState("bg-gray-200 hover:bg-gray-");
+  const [state, setState] = useState("bg-gray-200 hover:bg-gray-300 dark:bg-zinc-500 dark:text-white dark:hover:bg-zinc-400");
 
   const x = props.value.length === 1 ? "w-10 " : "p-4 ";
   const returnKey = () => {

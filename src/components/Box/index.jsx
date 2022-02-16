@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import BackspaceIcon from "@mui/icons-material/Backspace";
 
 function Box(props) {
-  const [state, setState] = useState("text-black border-2 border-gray-300");
+  const [state, setState] = useState("text-black border-2 border-gray-300 dark:bg-zinc-800 dark:text-white");
 
   useEffect(() => {
     setTimeout(() => {
@@ -12,7 +12,7 @@ function Box(props) {
         setState("bg-amber-500 text-white");
       if (props.state === "N")
         setState("bg-zinc-500 text-white");
-    }, 75 * props.pos);
+    }, 125 * props.pos);
   }, [props.state]);
 
   return (

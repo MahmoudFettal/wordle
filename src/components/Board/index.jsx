@@ -68,7 +68,9 @@ function Board(props) {
                     setRow(row + 1);
                     if (row === 5) {
                       setLost(true);
-                      setMessage("You LOST it was ");
+                      setTimeout(() => {
+                        setMessage(`you LOSE it was ${correct}`);
+                      }, 750);
                     }
 
                     setCol(0);
@@ -81,7 +83,9 @@ function Board(props) {
 
                   if (correctLetters === 5) {
                     setWin(true);
-                    setMessage("You WIN it is ");
+                    setTimeout(() => {
+                      setMessage(`you WIN it was ${correct}`);
+                    }, 750);
                   }
                   return prevBoard;
                 } else {
@@ -115,7 +119,7 @@ function Board(props) {
         );
       })}
       <div className=" grid place-items-center h-8 font-bold">
-        {lost ? `${message} ${correct}` : win ? `${message}  ${correct}` : ""}
+        {lost||win ? message : ""}
       </div>
     </div>
   );
