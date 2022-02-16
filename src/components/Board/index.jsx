@@ -118,7 +118,7 @@ function Board(props) {
           </div>
         );
       })}
-      <div className=" grid place-items-center h-8 font-bold">
+      <div className=" grid place-items-center h-8 font-bold dark:text-white">
         {lost||win ? message : ""}
       </div>
     </div>

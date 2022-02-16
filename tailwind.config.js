@@ -21,7 +21,10 @@ module.exports = {
         '200': '200ms',
         '300': '300ms',
         '400': '400ms',
-      }
+      },
+      screens: {
+        'sm': '500px',
+      },
     },
   },
   plugins: [],

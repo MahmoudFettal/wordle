@@ -4,7 +4,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 
 function NavBar(props) {
   return (
-    <div className="navbar flex w-100 justify-between items-center py-3 text-black dark:text-white">
+    <div className="navbar flex w-100 justify-between items-center pt-10 py-3 sm:pt-3 text-black dark:text-white">
       <div className="flex gap-3">
         <HelpOutlineIcon
           onClick={() => {
