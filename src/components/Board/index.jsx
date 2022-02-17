@@ -69,7 +69,7 @@ function Board(props) {
                     if (row === 5) {
                       setLost(true);
                       setTimeout(() => {
-                        setMessage(`you LOSE it was ${correct}`);
+                        setMessage(`It was ${correct}`);
                       }, 750);
                     }
 
@@ -84,7 +84,7 @@ function Board(props) {
                   if (correctLetters === 5) {
                     setWin(true);
                     setTimeout(() => {
-                      setMessage(`you WIN it was ${correct}`);
+                      setMessage("You WIN");
                     }, 750);
                   }
                   return prevBoard;

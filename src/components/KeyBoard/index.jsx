@@ -25,7 +25,7 @@ function Key(props) {
     setTimeout(() => {
       if (props.state === "C") setState("bg-emerald-500 text-white");
       if (props.state === "E") setState("bg-amber-500 text-white");
-      if (props.state === "N") setState("bg-zinc-500 text-white");
+      if (props.state === "N") setState("bg-zinc-500 text-white dark:bg-gray-700");
     }, 350);
   }, [props.state]);
 
@@ -53,7 +53,7 @@ function KeyBoard(props) {
     props.keyHandler(value);
   };
   return (
-    <div className="flex flex-col items-center w-100 pb-3">
+    <div className="flex flex-col items-center w-100 pb-10">
       <div className="flex gap-1 my-0.5 w-fit">
         {keyboard.line1.split("").map((value, key) => (
           <Key

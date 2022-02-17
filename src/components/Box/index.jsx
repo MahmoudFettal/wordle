@@ -11,14 +11,14 @@ function Box(props) {
       if (props.state === "E")
         setState("bg-amber-500 text-white");
       if (props.state === "N")
-        setState("bg-zinc-500 text-white");
+        setState("bg-zinc-500 text-white dark:bg-gray-700");
     }, 125 * props.pos);
   }, [props.state]);
 
   return (
     <div
       className={
-        "w-14 h-14 grid place-items-center p-0 m-0 font-bold text-2xl " + state
+        "h-12 w-12 sm:w-14 sm:h-14 grid place-items-center p-0 m-0 font-bold text-2xl " + state
       }
     >
       {props.value === "DEL" ? <BackspaceIcon /> : props.value}
