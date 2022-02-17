@@ -1,5 +1,6 @@
 import CloseIcon from "@mui/icons-material/Close";
 
+
 function Modal(props) {
   return (
     <div className="absolute w-full h-full grid place-cente">
