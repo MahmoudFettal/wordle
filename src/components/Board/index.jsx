@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Box from "../Box";
 import words from "../../words";
 
-const correct = "SMART";
+const correct = "FREAK";
 let defaulBoard = [];
 let defaultLetters = [];
 
-"abcdefjhijklmnopqrstuvwxyz".split("").forEach((i) => {
+"abcdefghijklmnopqrstuvwxyz".split("").forEach((i) => {
   defaultLetters[i] = "";
 });
 
