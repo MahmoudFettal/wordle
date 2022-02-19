@@ -7,7 +7,7 @@ function Box(props) {
   return (
     <div
       className={
-        "w-10 h-10 grid place-items-center p-0 m-0 font-bold text-2xl " + state
+        "w-8 h-8 sm:w-10 sm:h-10 grid place-items-center p-0 m-0 font-bold text-lg sm:text-2xl " + state
       }
     >
       {props.value}
@@ -18,7 +18,7 @@ function Box(props) {
 function Help() {
   return (
     <>
-      <p className="text-left py-5 font-regular opacity-75">
+      <p className="text-left text-sm sm:text-base py-5 font-regular opacity-75 mr-1">
         Guess the WORDLE in six tries.
         <br />
         Each guess must be a valid five-letter word. Hit the enter button to
@@ -35,7 +35,7 @@ function Help() {
         <Box value="A" />
         <Box value="T" />
       </div>
-      <p className="text-left py-2">
+      <p className="text-left text-sm sm:text-base py-2 opacity-75">
         The letter <b>S</b> is in the word and in the correct spot.
       </p>
       <div className="flex gap-1">
@@ -45,7 +45,7 @@ function Help() {
         <Box value="B" />
         <Box value="S" />
       </div>
-      <p className="text-left py-2">
+      <p className="text-left text-sm sm:text-base py-2 opacity-75">
         The letter <b>M</b> is in the word and in the correct spot.
       </p>
       <div className="flex gap-1">
@@ -55,7 +55,7 @@ function Help() {
         <Box value="T" />
         <Box value="S" />
       </div>
-      <p className="text-left py-2">
+      <p className="text-left text-sm sm:text-base py-2 opacity-75">
         The letter <b>N</b> is in the word and in the correct spot.
       </p>
     </>

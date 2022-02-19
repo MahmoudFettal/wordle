@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.modal::-webkit-scrollbar {
+  width: 3px;
+  margin-left: 5px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.modal::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background: rgba(6, 182, 76, 0.5);
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  width: 15px;
+  background: rgba(6, 182, 76, 0.75);
+}
+
+
 .app {
   text-align: center;
   display: grid;
