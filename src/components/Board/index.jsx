@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Box from "../Box";
 import words from "../../words";
 
-const correct = "FREAK";
+const correct = "FORCE";
 let defaulBoard = [];
 let defaultLetters = [];
 
