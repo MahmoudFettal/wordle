@@ -1,4 +1,4 @@
-![wordle screenshot](https://github.com/MahmoudFettal/wordle/blob/master/public/wordle.jpg)
+![wordle screenshot](https://github.com/MahmoudFettal/wordle/blob/master/public/wordle.jpeg)
 # I made Wordle XD
 [![GitHub license](https://img.shields.io/github/license/MahmoudFettal/wordle)](https://github.com/MahmoudFettal/wordle/blob/master/LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/MahmoudFettal/wordle.svg)](https://GitHub.com/MahmoudFettal/wordle/graphs/contributors/)
