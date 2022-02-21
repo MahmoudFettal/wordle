@@ -33,6 +33,7 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  background-color: #E5E5E5;
 }
 
 @media (prefers-reduced-motion: no-preference) {

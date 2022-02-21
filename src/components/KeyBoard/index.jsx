@@ -14,7 +14,7 @@ let defaultLetters = [];
 });
 
 function Key(props) {
-  const [state, setState] = useState("bg-gray-200 hover:bg-gray-300 dark:bg-zinc-500 dark:text-white dark:hover:bg-zinc-400");
+  const [state, setState] = useState("bg-gray-200 hover:bg-gray-300 dark:bg-zinc-400 dark:text-white dark:hover:bg-zinc-500");
 
   const x = props.value.length === 1 ? "w-7 sm:w-10 " : "p-2 sm:p-4 ";
   const returnKey = () => {
@@ -23,9 +23,9 @@ function Key(props) {
 
   useEffect(() => {
     setTimeout(() => {
-      if (props.state === "C") setState("bg-emerald-500 text-white");
-      if (props.state === "E") setState("bg-amber-500 text-white");
-      if (props.state === "N") setState("bg-zinc-500 text-white dark:bg-gray-700");
+      if (props.state === "C") setState("bg-correct text-white");
+      if (props.state === "E") setState("bg-exist text-white");
+      if (props.state === "N") setState("bg-wrong text-white dark:bg-gray-600");
     }, 350);
   }, [props.state]);
 
