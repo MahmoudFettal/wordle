@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Box from "../Box";
 import words from "../../words";
 
-const correct = "CHANT";
+const correct = words[Math.floor((Math.random() * words.length) - 1)];
 let defaulBoard = [];
 let defaultLetters = [];
 
