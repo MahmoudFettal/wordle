@@ -1,5 +1,4 @@
 import CloseIcon from "@mui/icons-material/Close";
-import "../../App.css";
 
 function Modal(props) {
   return (

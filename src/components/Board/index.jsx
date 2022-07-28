@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Box from "../Box";
 import words from "../../words";
 
-const correct = "CHANT";
+const correct =
+  words[Math.floor(Math.random() * words.length - 1)].toUpperCase();
 let defaulBoard = [];
 let defaultLetters = [];
 
@@ -119,7 +120,7 @@ function Board(props) {
         );
       })}
       <div className=" grid place-items-center h-8 font-bold dark:text-white">
-        {lost||win ? message : ""}
+        {lost || win ? message : ""}
       </div>
     </div>
   );
