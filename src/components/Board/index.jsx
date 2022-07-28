@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import Box from "../Box";
 import words from "../../words";
 
+<<<<<<< HEAD
 const correct =
   words[Math.floor(Math.random() * words.length - 1)].toUpperCase();
+=======
+const correct = words[Math.floor((Math.random() * words.length) - 1)];
+>>>>>>> e7ee9557a0dc3d940fc3c04bb9d9b43f2ef20273
 let defaulBoard = [];
 let defaultLetters = [];
 
